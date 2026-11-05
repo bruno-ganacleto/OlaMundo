@@ -1,20 +1,243 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu primeiro site</title>
+    <title>Bruno Gabriel Anacleto | Perfil Profissional</title>
+    <!-- Tailwind CSS CDN para estilos rápidos e responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonte Google Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            --page-bg: #f1f5f9;
+            --body-text: #334155;
+            --surface: #ffffff;
+            --surface-muted: #f8fafc;
+            --border: #e2e8f0;
+            --border-strong: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --shadow: rgba(15, 23, 42, 0.08);
+            --button-bg: #334155;
+            --button-text: #ffffff;
+        }
+
+        body.dark-theme {
+            --page-bg: #0f172a;
+            --body-text: #cbd5e1;
+            --surface: #1e293b;
+            --surface-muted: #273449;
+            --border: #334155;
+            --border-strong: #475569;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --button-bg: #cbd5e1;
+            --button-text: #0f172a;
+        }
+    </style>
 </head>
-<body>
-    <h1>
-        Meu primeiro código em HTML!
-    </h1>
-    <hm>
-    <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-        Ad ipsa, molestias sit in soluta animi distinctio eum commodi, 
-        totam dolorum voluptas explicabo mollitia ullam veniam eius 
-        blanditiis ipsam. Exercitationem, facere.
-    </p>
+<body style="background-color: var(--page-bg); color: var(--body-text); font-family: 'Inter', sans-serif;" class="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-10">
+
+    <!-- Container Principal do Cartão / Card de Apresentação -->
+    <div style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 20px 50px var(--shadow);" 
+         class="profile-card max-w-4xl w-full rounded-2xl overflow-hidden relative transition-all duration-300">
+        
+        <!-- Detalhe decorativo discreto -->
+        <div style="background-image: radial-gradient(circle at 20% 20%, rgba(148, 163, 184, 0.08) 0%, transparent 40%);" 
+             class="absolute inset-0 pointer-events-none"></div>
+
+        <div style="height: 3px; background: var(--text-muted);" class="w-full"></div>
+
+        <div class="p-6 sm:p-8 md:p-12 relative z-10">
+            <div class="flex justify-end mb-4">
+                <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Ativar tema escuro"
+                        style="background: var(--surface-muted); border: 1px solid var(--border); color: var(--text-secondary);"
+                        class="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-slate-400">
+                    <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
+                    <span id="theme-label">Tema escuro</span>
+                </button>
+            </div>
+            
+            <!-- Cabeçalho: Foto + Informações Principais -->
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 mb-8 text-center md:text-left">
+                
+                <!-- CONTAINER DA FOTO DE PERFIL -->
+                <div class="relative group flex-shrink-0">
+                    <div style="background: #cbd5e1; filter: blur(14px); opacity: 0.45;" 
+                         class="absolute -inset-1 rounded-full group-hover:opacity-100 transition duration-500"></div>
+                    
+                    <!-- Elemento de Imagem -->
+                    <div style="border: 3px solid var(--border); background-color: var(--surface-muted);" 
+                         class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden flex items-center justify-center shadow-xl">
+                        
+                        <!-- ⚠️ INSIRA AQUI A SUA FOTO! Substitua o atributo src abaixo pelo link da sua imagem -->
+                        <img id="profile-img"
+                             src="https://ci3.googleusercontent.com/mail-img-att/AGAZnRqjqN-c5OkuNegj286QLFG2euk2rEaGZuNpzTN-zNvS8CZNY5fb8haUr6xRy4M9hBCX8E_6AB1UiVPiSIhmbixsH8EYBvUdJsZHktve3b0z4kqUJ_kICdtsYRuIAlEHUVfjxvjD2UBK-VpzhiuUST06c4QE8WuS9eIsSodxZMkcWKNxzrJKfcW2BFY-UA6Q7cJEJJuiOHVtYi42EGBs2-yAkQBByLxBttaF-p2i8tlEL5D4oiwe4eDRHhK2ilTElHZlkQHRD-8TpMAUAAXQAnmsQAvO7--_iJS1RsfH1Ua1arVSJuLOP2i_2UiWmyqsycGrF5WVIff-IGF60M4Ui1HygJ4GOcWdFZdwKIO298YouQp84dVLHfFp5-pLByXiObx5jdygFmFuL4tTo4h09S5mv1ltjN6_qkpgaCoVWkyItuPGNCglZj2454YIX-cm7SebIhqVdH91NeuNPdUE2qyGlumogGQRDMhcZ67NKilz8G5SIkxCC0IR6CXG1dcNiZg7zV4DGRYcUc5vb4R-zZvpnLEjDh926dH9Caj8Bqja25_OSdkJw5sHBvGGcZG5T7CLg9fNtizfJ4M_-0zoZxCvvdBJo5ohBWMzvtgv6sikCCZ5J5j3ZIxhBRk2W168diV8PF7W2PBScIN8CGrQ6SUnsFtGJjylH8GOsTscgC5njmbj7BCsKQG1zzU36AunnTGYNI3EDg1nGQJN8dm0ADhqLdY2os9tNLs4wxD0CB67MTm2PhhpL_31jjs2yqVBEu5J_XmgpUfonlujyjvEm8cFiGyY3Sf-gJgvAJMiL5DhlxP7DLltJp4Y0gVn_j36MyMt3lxKK1AnlBdVrUwmmdsW9HlLKX-x9275le9-A65CG7DjhgEQLaXZ00QyhYSHU8Cn798TVvSnVj32iEUbeL3QCAyme9fWorVV0bky-fo1l22NxM13VLfln1q2dTtWMLH8g4oiTMzKiw8IQV5Y84kBpATazg4pf6JZZJE7hlBBuTMUYhFPz_n0RDVtnOnPX3r34dUAMNdf9_sslKNeX0d5OJL24Mt1PMm2twhykgzFomaKD4WlPK7Saikv_r_ZJChghITuy3aHIIXseJSWjlgHBkcqUdYJl0XLQXk3GTrAei79KSBZA8ApeXip_Md8jQ=s0-l75-ft" 
+                             alt="Bruno Gabriel Anacleto" 
+                             class="w-full h-full object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x400/f8fafc/64748b?text=Sua+Foto';" />
+                    </div>
+
+                    <!-- Indicador Status Online/Ativo -->
+                    <div style="background-color: #94a3b8; border: 3px solid var(--surface);" 
+                         class="absolute bottom-2 right-2 w-5 h-5 rounded-full" 
+                         title="Pronto para novos desafios"></div>
+                </div>
+
+                <!-- Título e Subtítulo -->
+                <div class="flex-1 space-y-3">
+                    <h1 style="color: var(--text-primary); letter-spacing: -0.02em;" class="text-3xl sm:text-4xl md:text-5xl font-bold">
+                        Bruno Gabriel Anacleto
+                    </h1>
+                    
+                    <p style="color: var(--text-secondary);" class="text-lg sm:text-xl font-semibold flex items-center justify-center md:justify-start gap-2">
+                        <span>Sou um estudante de Programação & Automação Industrial</span>
+                    </p>
+
+                    <!-- Tags / Badges Rápidas -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-2">
+                        <span style="background-color: var(--surface-muted); border: 1px solid var(--border); color: var(--text-secondary);" 
+                              class="text-xs px-3 py-1 rounded-md">
+                              <i style="color: var(--text-muted);" class="fa-solid fa-bolt mr-1"></i> Eletricista Industrial (SENAI)
+                        </span>
+                        <span style="background-color: var(--surface-muted); border: 1px solid var(--border); color: var(--text-secondary);" 
+                              class="text-xs px-3 py-1 rounded-md">
+                              <i style="color: var(--text-muted);" class="fa-solid fa-network-wired mr-1"></i> Cibersistemas (SENAI / WEG)
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divisor -->
+            <div style="border-top: 1px solid var(--border);" class="my-6"></div>
+
+            <!-- Bio / Texto Principal -->
+            <div class="space-y-4">
+                <h2 style="color: var(--text-secondary);" class="text-xs font-semibold uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-solid fa-user"></i> Sobre mim / Perfil Profissional
+                </h2>
+                
+                <p style="color: var(--text-secondary); line-height: 1.7;" class="text-base sm:text-lg text-justify leading-relaxed">
+                    Sou um estudante de programação, desenvolvimento de sistemas e automação industrial, motivado pelo aprendizado contínuo e pela resolução de problemas complexos.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.7;" class="text-base sm:text-lg text-justify leading-relaxed">
+                    Com formação em <strong style="color: var(--text-primary);" class="font-semibold">Aprendizagem Industrial Eletricista Industrial pelo SENAI (2025)</strong>, estou atualmente expandindo minha qualificação no curso de <strong style="color: var(--text-primary);" class="font-semibold">Aprendizagem Técnica em Cibersistemas para Automação no SENAI CTW / WEG</strong>. Busco unir a base da eletricidade industrial com o desenvolvimento de software e soluções conectadas para impulsionar a eficiência e a modernização dos processos de automação.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.7;" class="text-base sm:text-lg text-justify leading-relaxed">
+                    Sou um constante aprendiz, focado em desenvolver novas competências técnicas a cada dia e pronto para contribuir em projetos desafiadores na área de tecnologia e indústria 4.0.
+                </p>
+            </div>
+
+            <!-- Destaques de Habilidades/Competências -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+                <div style="background: var(--surface-muted); border: 1px solid var(--border);" class="p-4 rounded-xl">
+                    <div style="color: var(--text-muted);" class="text-2xl mb-2"><i class="fa-solid fa-code"></i></div>
+                    <h3 style="color: var(--text-primary);" class="font-semibold text-sm">Desenvolvimento</h3>
+                    <p style="color: var(--text-muted);" class="text-xs mt-1">Lógica de programação, desenvolvimento de sistemas e softwares.</p>
+                </div>
+
+                <div style="background: var(--surface-muted); border: 1px solid var(--border);" class="p-4 rounded-xl">
+                    <div style="color: var(--text-muted);" class="text-2xl mb-2"><i class="fa-solid fa-gears"></i></div>
+                    <h3 style="color: var(--text-primary);" class="font-semibold text-sm">Automação & Elétrica</h3>
+                    <p style="color: var(--text-muted);" class="text-xs mt-1">Eletricidade industrial, sensores, atuadores e painéis.</p>
+                </div>
+
+                <div style="background: var(--surface-muted); border: 1px solid var(--border);" class="p-4 rounded-xl">
+                    <div style="color: var(--text-muted);" class="text-2xl mb-2"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h3 style="color: var(--text-primary);" class="font-semibold text-sm">Cibersistemas & IoT</h3>
+                    <p style="color: var(--text-muted);" class="text-xs mt-1">Integração TI + TA e soluções conectadas para a Indústria 4.0.</p>
+                </div>
+            </div>
+
+            <!-- Botões de Ação / Contato -->
+            <div class="mt-8 flex flex-wrap items-center justify-between gap-4 pt-6" style="border-top: 1px solid var(--border);">
+                <div class="flex flex-wrap gap-3 w-full sm:w-auto">
+                    <!-- Botão LinkedIn (Ajustar Link) -->
+                    <a href="https://www.linkedin.com/in/bruno-gabriel-anacleto-070593449/" target="_blank" 
+                       style="background: #475569;" 
+                       class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-white font-medium text-sm transition-all hover:scale-105 shadow-lg">
+                        <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn
+                    </a>
+                    
+                    <!-- Botão GitHub (Ajustar Link) -->
+                    <a href="https://github.com/bruno-ganacleto" target="_blank" 
+                       style="background: var(--surface); border: 1px solid var(--border-strong); color: var(--body-text);" 
+                       class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all hover:scale-105 shadow-lg">
+                        <i class="fa-brands fa-github text-lg"></i> GitHub
+                    </a>
+
+                    <!-- Botão Email / Contato -->
+                    <div class="relative w-full sm:w-auto">
+                        <div id="contact-popup" role="dialog" aria-label="Informações de contato"
+                             class="absolute bottom-full right-0 z-20 mb-2 w-72 max-w-[calc(100vw-2rem)] rounded-xl p-4 shadow-xl"
+                             style="background: var(--surface); border: 1px solid var(--border);" hidden>
+                            <div style="color: var(--text-secondary);"
+                                 class="flex items-center gap-3 rounded-md px-2 py-2 text-sm">
+                                <i class="fa-solid fa-envelope w-5 text-center" aria-hidden="true"></i>
+                                <span>brunogabrielanacleto1@gmail.com</span>
+                            </div>
+                            <div style="color: var(--text-secondary);"
+                                 class="flex items-center gap-3 rounded-md px-2 py-2 text-sm">
+                                <i class="fa-brands fa-whatsapp w-5 text-center" aria-hidden="true"></i>
+                                <span>+55 47 98844-0309</span>
+                            </div>
+                        </div>
+                        <button id="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-popup"
+                                style="background: var(--button-bg); color: var(--button-text);"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all hover:scale-105 shadow-lg">
+                            <i class="fa-solid fa-envelope text-lg" aria-hidden="true"></i> Entrar em Contato
+                        </button>
+                    </div>
+                </div>
+
+                <div style="color: var(--text-muted);" class="text-xs w-full sm:w-auto text-center sm:text-right">
+                    SENAI CTW / WEG • 2026
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeLabel = document.getElementById('theme-label');
+        const themeIcon = document.getElementById('theme-icon');
+        const contactToggle = document.getElementById('contact-toggle');
+        const contactPopup = document.getElementById('contact-popup');
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-theme');
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+            themeToggle.setAttribute('aria-label', isDark ? 'Ativar tema claro' : 'Ativar tema escuro');
+            themeLabel.textContent = isDark ? 'Tema claro' : 'Tema escuro';
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+
+        contactToggle.addEventListener('click', () => {
+            const isOpen = contactToggle.getAttribute('aria-expanded') === 'true';
+            contactToggle.setAttribute('aria-expanded', String(!isOpen));
+            contactPopup.hidden = isOpen;
+        });
+    </script>
 </body>
 </html>
